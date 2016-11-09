@@ -181,5 +181,15 @@ if __name__ == "__main__":
     file.close()
     #print("3")
 
+    graphNew=copy.deepcopy(graph)
+    with open('./paymo_output/outputCommon.txt', 'w') as file:
+        if len(StreamData.shape)<2:
+            file.write('%s\n' % (graphNew.oneFriend(int(StreamData[0]),int(StreamData[1]))))
+        else:
+            for row in StreamData[:1000,:]:
+                file.write('%s\n' % (graphNew.commonFriends(int(row[0]),int(row[1]))))
+                graphNew.add_edge(int(row[0]),int(row[1]))
+    file.close()
+
 
 
